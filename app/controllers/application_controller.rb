@@ -41,10 +41,25 @@ class ApplicationController < Sinatra::Base
     erb :'/users/show'
   end
 
+  get '/users/:user_slug/foods' do
+    erb :'/foods/foods'
+  end
+
+  get '/users/:user_slug/foods/new' do
+    erb :'/foods/create_food'
+  end
+
+  post '/users/:user_slug/foods' do
+  end
+
+
   get '/users/:user_slug/:food_type' do
     @food_type = params[:food_type]
     erb :'/foods/show_food'
   end
+
+
+
 
   helpers do
 
