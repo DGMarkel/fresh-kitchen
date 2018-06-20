@@ -13,12 +13,28 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  get '/signup' do
+    erb :'/users/create_user'
+  end
+
+  post '/signup' do
+    if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
+      @user = User.create(params)
+      session[:user_id] = @user.id
+      redirect :'/users/:id'
+    else
+      redirect :'/signup'
+    end
+  end
+
   get '/login' do
     erb :'/users/login'
   end
 
-  get '/signup' do
-    erb :'/users/create_user'
+  post '/login' do
+    @user = User.find_by(params[:username])
+    session[:user_id] = @user.id
+    redirect to :'/users/:id'
   end
 
 end
