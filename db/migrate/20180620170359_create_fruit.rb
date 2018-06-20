@@ -1,4 +1,4 @@
-class CreateFruit < ActiveRecord::Migration[5.2]
+class CreateFruit < ActiveRecord::Migration
 
   def change
     create_table :fruit do |t|

@@ -1,4 +1,4 @@
-class CreateMeat < ActiveRecord::Migration[5.2]
+class CreateMeat < ActiveRecord::Migration
 
   def change
     create_table :meat do |t|

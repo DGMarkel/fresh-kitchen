@@ -1,4 +1,4 @@
-class CreateVegetables < ActiveRecord::Migration[5.2]
+class CreateVegetables < ActiveRecord::Migration
 
   def change
     create_table :vegetables do |t|

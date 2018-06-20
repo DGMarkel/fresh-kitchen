@@ -1,4 +1,4 @@
-class CreatePantryItems < ActiveRecord::Migration[5.2]
+class CreatePantryItems < ActiveRecord::Migration
 
   def change
     create_table :pantry_items do |t|

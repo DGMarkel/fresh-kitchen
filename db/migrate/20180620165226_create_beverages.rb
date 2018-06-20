@@ -1,4 +1,4 @@
-class CreateBeverages < ActiveRecord::Migration[5.2]
+class CreateBeverages < ActiveRecord::Migration
 
   def change
     create_table :beverages do |t|
