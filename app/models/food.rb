@@ -2,8 +2,8 @@ class Food < ActiveRecord::Base
   belongs_to :user
 
   def slug
-  self.username.gsub(" ", "-")
-end
+    self.username.gsub(" ", "-")
+  end
 
   def self.find_by_slug(slug)
     self.all.find {|user| user.slug == slug}

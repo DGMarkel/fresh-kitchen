@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   has_many :foods
 
   def slug
-  self.username.gsub(" ", "-")
-end
+    self.username.gsub(" ", "-")
+  end
 
   def self.find_by_slug(slug)
     self.all.find {|user| user.slug == slug}
