@@ -52,7 +52,6 @@ class ApplicationController < Sinatra::Base
   post '/users/:user_slug/foods' do
   end
 
-
   get '/users/:user_slug/:food_type' do
     @food_type = params[:food_type]
     erb :'/foods/show_food'
