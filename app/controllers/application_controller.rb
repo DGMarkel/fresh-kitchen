@@ -38,11 +38,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:user_slug' do
-    @user = current_user
     erb :'/users/show'
   end
 
   get '/users/:user_slug/:food_type' do
+
   end
 
   helpers do
