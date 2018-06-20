@@ -2,9 +2,9 @@
 
 <% if !Food.all.empty? %>
 
-  <% user_foods = Food.all.collect {|food| food.user_id == current_user.id} %>
+  <% user_foods = Food.all.collect {|food| food if food.user_id == current_user.id} %>
   <% user_foods.each do |item| %>
-    <p><a href="/users/<%= current_user.name %>/<%= item %>"><%= item.name %></a></p>
+    <p><a href="/users/<%= current_user.username %>/<%= item %>"><%= item.name %></a></p>
   <% end %>
 
 <% else %>

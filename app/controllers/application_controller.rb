@@ -50,7 +50,6 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/users/:user_slug/foods' do
-    binding.pry
     current_user.foods << Food.create(params[:user])
     redirect to :"/users/#{current_user.user_slug}/foods"
   end
