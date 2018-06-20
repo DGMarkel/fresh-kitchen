@@ -1,0 +1,18 @@
+<% if Food.all.find {|food| food.type == params[:food_type]} %>
+
+  <% foods = Food.all.collect {|food| food.type == params[:food_type]} %>
+  <% foods.each do |food| %>
+
+      <p><%= food.name %>:</p>
+        <ul>
+          <li>Quantity: <%= food.quantity %></li>
+          <li>Expiration Date: <%= food.expiration_date %></li>
+        </ul>
+
+  <% end %>
+
+<% else %>
+
+    <p>You are currently out of <%= params[:food_type].gsub("_", " ") %>.</p>
+
+  <% end %>

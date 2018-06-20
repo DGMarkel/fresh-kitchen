@@ -42,7 +42,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:user_slug/:food_type' do
-
+    @food_type = params[:food_type]
+    erb :'/foods/show_food'
   end
 
   helpers do
