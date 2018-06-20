@@ -1,7 +1,7 @@
 class CreateFruit < ActiveRecord::Migration[5.2]
 
   def change
-    create_table :pantry_items do |t|
+    create_table :fruit do |t|
       t.string :name
       t.string :quantity
       t.string :expiration_date
