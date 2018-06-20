@@ -1,7 +1,7 @@
-<% if Food.all.find {|food| food.category == params[:category].gsub("s","")} %>
+<% if !@foods.empty? %>
 
-  <% foods = Food.all.collect {|food| food if food.category == params[:category].gsub("s","")} %>
-    <% foods.each do |food| %>
+  <% category_foods = @foods.collect {|food| food if food.category == params[:category].gsub("s","")} %>
+    <% category_foods.each do |food| %>
       <p><a href="/users/<%= params[:user_slug] %>/<%= food.category %>/<%= food.name %>"><%= food.name %>:</a></p>
         <ul>
           <li>Quantity: <%= food.quantity %></li>
@@ -12,6 +12,6 @@
 
 <% else %>
 
-    <p>You are currently out of <%= params[:food_type].gsub("_", " ") %>.</p>
+    <p>You are currently out of <%= params[:category].gsub("_", " ") %>.</p>
 
   <% end %>
