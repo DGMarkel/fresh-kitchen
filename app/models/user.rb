@@ -2,11 +2,11 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :foods
 
-  def slug
+  def user_slug
     self.username.gsub(" ", "-")
   end
 
-  def self.find_by_slug(slug)
+  def self.find_by_user_slug(slug)
     self.all.find {|user| user.slug == slug}
   end
 
