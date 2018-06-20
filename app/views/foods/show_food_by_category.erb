@@ -2,7 +2,7 @@
 
   <% foods = Food.all.collect {|food| food if food.category == params[:category].gsub("s","")} %>
     <% foods.each do |food| %>
-      <p><%= food.name %>:</p>
+      <p><a href="/users/<%= params[:user_slug] %>/<%= food.category %>/<%= food.name %>"><%= food.name %>:</a></p>
         <ul>
           <li>Quantity: <%= food.quantity %></li>
           <li>Expiration Date: <%= food.expiration_date %></li>
