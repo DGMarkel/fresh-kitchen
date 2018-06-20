@@ -50,6 +50,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/users/:user_slug/foods' do
+    redirect to :"/users/#{current_user.slug}/foods"
   end
 
   get '/users/:user_slug/:food_type' do
