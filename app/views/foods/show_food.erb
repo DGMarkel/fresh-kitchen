@@ -1,8 +1,7 @@
-<% if Food.all.find {|food| food.type == params[:food_type]} %>
+<% if Food.all.find {|food| food.category == params[:category].gsub("s","")} %>
 
-  <% foods = Food.all.collect {|food| food.type == params[:food_type]} %>
-  <% foods.each do |food| %>
-
+  <% foods = Food.all.collect {|food| food if food.category == params[:category].gsub("s","")} %>
+    <% foods.each do |food| %>
       <p><%= food.name %>:</p>
         <ul>
           <li>Quantity: <%= food.quantity %></li>

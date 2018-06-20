@@ -54,8 +54,7 @@ class ApplicationController < Sinatra::Base
     redirect to :"/users/#{current_user.user_slug}/foods"
   end
 
-  get '/users/:user_slug/:food_type' do
-    @food_type = params[:food_type]
+  get '/users/:user_slug/:category' do
     erb :'/foods/show_food'
   end
 
