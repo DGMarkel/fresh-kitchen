@@ -1,7 +1,7 @@
 class CreateMeat < ActiveRecord::Migration
 
   def change
-    create_table :meat do |t|
+    create_table :meats do |t|
       t.string :name
       t.string :quantity
       t.string :expiration_date
