@@ -55,11 +55,19 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:user_slug/:category' do
-    erb :'/foods/show_food'
+    erb :'/foods/show_food_by_category'
   end
 
+  get '/users/:user_slug/:category/:food' do
+  end
 
+  get '/users/:user_slug/:category/:food/edit' do
+    erb :'/foods/edit_food'
+  end
 
+  post '/users/:user_slug/:category/:food' do
+    redirect to :'/users/:user_slug/:category/:food'
+  end
 
   helpers do
 
