@@ -14,6 +14,17 @@
       </header>
     <% end %>
 
+    <% expired = current_user.foods.select {|food| Date.today.strftime == food.expiration_date} %>
+    <% if !expired.empty? %>
+      <% expired.each do |food| %>
+        <p style="color:red;">WARNING!!! <%= food.name %> expired today. They have been removed from your inventory.</p>
+      <% end %>
+      <% expired.each do |food| %>
+        <% food.delete %>
+      <% end %>
+      <p>Time to take out the trash!</p>
+    <% end %>
+
     <%= yield %>
 
   </body>
