@@ -1,11 +1,16 @@
 <h1>Welcome, <%= current_user.username %></h1>
 <h4>Let's take a look at what you've got in your kitchen:</h4>
 
-  <p><a href="/users/<%= current_user.username %>/fruits">Fruits</a></p>
-  <p><a href="/users/<%= current_user.username %>/vegetables">Vegetables</a></p>
-  <p><a href="/users/<%= current_user.username %>/meat">Meat</a></p>
-  <p><a href="/users/<%= current_user.username %>/beverages">Beverages</a></p>
-  <p><a href="/users/<%= current_user.username %>/pantry_items">Pantry Items</a></p>
+<% if !current_user.categories.empty? %> 
+  <% current_user.categories.each do |category| %>
+    <a href="/users/<%=current_user.username%>/<%=category.name%>"><%=category.name%></a>
+  <% end %>
+
+<% else %>
+
+<h4>Your kitchen is currently empty.  Time to do some shopping!<h4>
+
+<% end %>
 
 <h4>Add a<a href="/users/<%= current_user.username %>/foods/new"> new item</a> to your inventory.</h4>
 
