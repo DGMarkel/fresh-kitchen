@@ -74,7 +74,13 @@ class ApplicationController < Sinatra::Base
   post '/users/:user_slug/:category/:food' do
     @food = current_user.foods.find_by(name: params[:food])
     @food.update(params[:user])
-    redirect to :"/users/#{params[:user_slug]}/#{params[:category]}/#{params[:food]}"
+    redirect :"/users/#{params[:user_slug]}/#{params[:category]}/#{params[:food]}"
+  end
+
+  delete '/users/:user_slug/:category/:food/delete' do
+    food = current_user.foods.find_by(name: params[:food])
+    food.delete
+    redirect :"/users/#{params[:user_slug]}/#{params[:category]}"
   end
 
   helpers do

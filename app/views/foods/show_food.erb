@@ -5,5 +5,9 @@
   </ul>
 
 <p><a href="/users/<%= params[:user_slug] %>">Home</a></p>
-<p><a href="/users/<%= params[:user_slug] %>/<%= params[:category] %>/<%= params[:food] %>/edit">Edit</p>
-<p><a href="#">Delete</a></p>
+<p><a href="/users/<%= params[:user_slug] %>/<%= params[:category] %>/<%= params[:food] %>/edit">Edit</a></p>
+
+<form method="post" action="/users/<%= params[:user_slug] %>/<%= params[:category] %>/<%= params[:food] %>/delete">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete">
+</form>
