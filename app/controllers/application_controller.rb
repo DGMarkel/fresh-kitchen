@@ -61,7 +61,6 @@ class ApplicationController < Sinatra::Base
         category_new = Category.create(name: params[:category][:name], user_id: current_user.id)
         food.update(category_id: category_new.id)
     else
-      binding.pry
       redirect :"/users/#{current_user.username}/foods/new"
     end
     category = Category.find_by(id: food.category_id)
