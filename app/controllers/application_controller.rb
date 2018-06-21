@@ -77,13 +77,14 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:user_slug/:category/:food/edit' do
-    @food = current_user.foods.find_by(name: params[:food])
+    @food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
     erb :'/foods/edit_food'
   end
 
   post '/users/:user_slug/:category/:food' do
-    @food = current_user.foods.find_by(name: params[:food])
-    @food.update(params[:user])
+    @food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
+    binding.pry
+    @food.update(params[:update])
     redirect :"/users/#{params[:user_slug]}/#{params[:category]}/#{params[:food]}"
   end
 
