@@ -70,8 +70,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:user_slug/:category/:food' do
-    if current_user.foods.find_by(name: params[:food])
-      @food = current_user.foods.find_by(name: params[:food])
+    binding.pry
+    if current_user.foods.find_by(name: params[:food].gsub("-", " "))
+      @food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
       erb :'/foods/show_food'
     end
   end
