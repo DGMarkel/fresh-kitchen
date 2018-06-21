@@ -2,7 +2,7 @@
 
 <% if !@foods.empty? %>
   <% @foods.each do |food| %>
-      <p><a href="/users/<%= params[:user_slug] %>/<%= Category.find_by_slug(params[:category]).slug %>/<%= food.food_slug %>"><%= food.name %>:</a></p>
+      <p><a href="/users/<%= params[:user_slug] %>/<%= Category.find_by_slug(params[:category]).slug %>/<%= food.slug %>"><%= food.name %>:</a></p>
         <ul>
           <li>Quantity: <%= food.quantity %></li>
           <li>Expiration Date: <%= food.expiration_date %></li>
@@ -12,7 +12,7 @@
 
 <% else %>
 
-    <p>You are currently out of <%= params[:category].gsub("_", " ") %>.</p>
+    <p>You are currently out of <%= params[:category].gsub("-", " ") %>.</p>
 
   <% end %>
 

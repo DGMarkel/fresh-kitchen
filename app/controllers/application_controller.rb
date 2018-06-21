@@ -70,7 +70,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:user_slug/:category/:food' do
-    binding.pry
     if current_user.foods.find_by(name: params[:food].gsub("-", " "))
       @food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
       erb :'/foods/show_food'
@@ -89,7 +88,7 @@ class ApplicationController < Sinatra::Base
   end
 
   delete '/users/:user_slug/:category/:food/delete' do
-    food = current_user.foods.find_by(name: params[:food])
+    food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
     food.delete
     redirect :"/users/#{params[:user_slug]}/#{params[:category]}"
   end
