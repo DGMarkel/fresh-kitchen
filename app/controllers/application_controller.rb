@@ -46,7 +46,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:user_slug/foods' do
-    binding.pry
     erb :'/foods/foods'
   end
 

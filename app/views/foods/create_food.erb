@@ -1,16 +1,30 @@
-<form action="/users/<%= current_user.name/foods" method="post">
+<h1>Inventory Add Form</h1>
 
-  <label>Name: </label><input type="text" name="user[name]">
+<form action="/users/<%= current_user.username %>/foods" method="post">
+
+  <label>Name: </label><input type="text" name="food[name]">
+
+  <p></p>
+  
+  <label>Quantity: </label><input type="text" name="food[quantity]">
 
   <p></p>
 
-  <label>Type of Food: </label><input type="text" name="user[category]">
+  <label>Expiration Date: </label><input type="text" name="food[expiration_date]">
 
   <p></p>
 
-  <label>Quantity: </label><input type="text" name="user[quantity]">
+  <label>Select a Category: </label>
+    <% if !current_user.categories.empty? %>
+      <% current_user.categories.each do |category| %>
+      <%= category.name %> <input type="radio" name="food[category]">
+      <% end %>
+    <% end %>
 
-  <label>Expiration Date: </label><input type="text" name="user[expiration_date]">
+  <p></p>
+
+  <label>Create a Category:</label>
+    <input type="text" name="food[category]">
 
   <p></p>
 
