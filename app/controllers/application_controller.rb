@@ -72,7 +72,9 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/users/:user_slug/:category/:food' do
-    redirect to :'/users/:user_slug/:category/:food'
+    @food = current_user.foods.find_by(name: params[:food])
+    @food.update(params[:user])
+    redirect to :"/users/#{params[:user_slug]}/#{params[:category]}/#{params[:food]}"
   end
 
   helpers do
