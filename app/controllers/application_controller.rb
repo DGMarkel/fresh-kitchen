@@ -83,6 +83,11 @@ class ApplicationController < Sinatra::Base
     redirect :"/users/#{params[:user_slug]}/#{params[:category]}"
   end
 
+  get '/logout' do
+    session.clear
+    redirect :'/login'
+  end
+
   helpers do
 
     def logged_in?
