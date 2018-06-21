@@ -45,10 +45,6 @@ class ApplicationController < Sinatra::Base
     erb :'/users/show'
   end
 
-  get '/users/:user_slug/foods' do
-    erb :'/foods/foods'
-  end
-
   get '/users/:user_slug/foods/new' do
     erb :'/foods/create_food'
   end
@@ -68,7 +64,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:user_slug/:category' do
-    @foods = current_user.foods
+    category_id = Category.find_by(name: params[:category]).id
+    @foods = current_user.foods.where(category_id: category_id)
     erb :'/foods/show_food_by_category'
   end
 

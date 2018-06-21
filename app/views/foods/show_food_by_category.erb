@@ -1,7 +1,7 @@
-<% if @foods.find_by(category: params[:category]) %>
-  <% category_foods = [] %>
-  <% @foods.each {|food| category_foods << food if food.category == params[:category]} %>
-    <% category_foods.each do |food| %>
+<h1><%= params[:category] %></h1>
+
+<% if !@foods.empty? %>
+  <% @foods.each do |food| %>
       <p><a href="/users/<%= params[:user_slug] %>/<%= food.category %>/<%= food.name %>"><%= food.name %>:</a></p>
         <ul>
           <li>Quantity: <%= food.quantity %></li>
