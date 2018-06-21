@@ -17,14 +17,14 @@
   <label>Select a Category: </label>
     <% if !current_user.categories.empty? %>
       <% current_user.categories.each do |category| %>
-      <%= category.name %> <input type="radio" name="food[category]">
+      <%= category.name %> <input type="radio" name="category[name]">
       <% end %>
     <% end %>
 
   <p></p>
 
   <label>Create a Category:</label>
-    <input type="text" name="food[category]">
+    <input type="text" name="category[name]">
 
   <p></p>
 

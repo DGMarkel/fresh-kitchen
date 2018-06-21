@@ -1,7 +1,7 @@
 <h1>Welcome, <%= current_user.username %></h1>
 <h4>Let's take a look at what you've got in your kitchen:</h4>
 
-<% if !current_user.categories.empty? %> 
+<% if !current_user.categories.empty? %>
   <% current_user.categories.each do |category| %>
     <a href="/users/<%=current_user.username%>/<%=category.name%>"><%=category.name%></a>
   <% end %>
