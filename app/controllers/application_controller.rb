@@ -67,7 +67,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:user_slug/:category/:food/edit' do
-    binding.pry
     @food = current_user.foods.find_by(name: params[:food])
     erb :'/foods/edit_food'
   end
