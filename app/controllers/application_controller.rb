@@ -55,14 +55,16 @@ class ApplicationController < Sinatra::Base
 
   post '/users/:user_slug/foods' do
     food = Food.create(params[:food])
-    category_exist = current_user.categories.find_by(name: params[:category][:name])
-    if category_exist
-      food.update(category_id: category_exist)
+    if !params[:category][:name].empty?
+      category_exist = Category.find_by(name: params[:category][:name])
+      food.update(category_id: category_exist.user_id)
     else
       category_new = Category.create(name: params[:category][:name], user_id: current_user.id)
       food.update(category_id: category_new.id)
     end
-    redirect to :"/users/#{current_user.user_slug}/foods"
+    binding.pry
+    category = Category.find_by(id: food.category.id)
+    redirect to :"/users/#{current_user.user_slug}/#{category.name}"
   end
 
   get '/users/:user_slug/:category' do
