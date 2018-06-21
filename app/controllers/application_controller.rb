@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+      erb :index
   end
 
   get '/signup' do
@@ -32,7 +32,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
-    erb :'/users/login'
+    if !logged_in?
+      erb :'/users/login'
+    else
+      redirect :"/users/#{current_user.username}"
+    end
   end
 
   post '/login' do
@@ -42,11 +46,19 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:user_slug' do
-    erb :'/users/show'
+    if logged_in?
+      erb :'/users/show'
+    else
+      redirect :/
+    end
   end
 
   get '/users/:user_slug/foods/new' do
-    erb :'/foods/create_food'
+    if logged_in?
+      erb :'/foods/create_food'
+    else
+      redirect to :/
+    end
   end
 
   post '/users/:user_slug/foods' do
@@ -64,9 +76,13 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:user_slug/:category' do
-    category_id = Category.find_by_slug(params[:category]).id
-    @foods = current_user.foods.where(category_id: category_id)
-    erb :'/foods/show_food_by_category'
+    if logged_in?
+      category_id = Category.find_by_slug(params[:category]).id
+      @foods = current_user.foods.where(category_id: category_id)
+      erb :'/foods/show_food_by_category'
+    else
+      redirect :/
+    end
   end
 
   get '/users/:user_slug/:category/:food' do
@@ -77,8 +93,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:user_slug/:category/:food/edit' do
-    @food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
-    erb :'/foods/edit_food'
+    if logged_in?
+      @food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
+      erb :'/foods/edit_food'
+    else
+      redirect :/
+    end
   end
 
   post '/users/:user_slug/:category/:food' do
@@ -89,14 +109,20 @@ class ApplicationController < Sinatra::Base
   end
 
   delete '/users/:user_slug/:category/:food/delete' do
-    food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
-    food.delete
-    redirect :"/users/#{params[:user_slug]}/#{params[:category]}"
+    if logged_in?
+      food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
+      food.delete
+      redirect :"/users/#{params[:user_slug]}/#{params[:category]}"
+    else
+      redirect :/
+    end
   end
 
   get '/logout' do
-    session.clear
-    redirect :'/login'
+    if logged_in?
+      session.clear
+    end
+      redirect :/
   end
 
   helpers do
@@ -106,7 +132,9 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      User.find(session[:user_id])
+      if logged_in?
+        User.find(session[:user_id])
+      end
     end
 
   end
