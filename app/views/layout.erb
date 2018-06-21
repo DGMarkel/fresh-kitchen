@@ -3,6 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+
+    <style>
+      .warning p {
+        color: red;
+        text-align: center;
+      }
+    </style>
+
   </head>
   <body>
 
@@ -13,18 +21,33 @@
         <a href="/logout" style="float:right;">Sign Out</a>
       </header>
 
+      <div class="warning">
 
-      <% expired = current_user.foods.select {|food| Date.today.strftime == food.expiration_date} %>
-      <% if !expired.empty? %>
-        <% expired.each do |food| %>
-          <p style="color:red;">WARNING!!! <%= food.name %> expired today. They have been removed from your inventory.</p>
+        <% expired = current_user.foods.select {|food| Date.today.strftime == food.expiration_date} %>
+
+        <% if !expired.empty? %>
+
+          <% expired.each do |food| %>
+
+            <!-- conjugation helpers -->
+              <% food.name[-1] == "s" ? first_pronoun = "were" : first_pronoun = "was" %>
+              <% second_pronoun = "them" if food.name[-1] == "s" %>
+              <% food.name[-1] == "s" ? possessive = "have" : possessive = "has" %>
+            <!-- end of helpers -->
+
+            <p>*** Your <%= food.name.downcase %> expired today and <%= first_pronoun %>
+              removed from your inventory. Eat <%= second_pronoun %> quick or dump
+              <%= second_pronoun %> in the trash! ***</p>
+          <% end %>
+          <% expired.each do |food| %>
+            <% food.delete %>
+          <% end %>
         <% end %>
-        <% expired.each do |food| %>
-          <% food.delete %>
-        <% end %>
-        <p>Time to take out the trash!</p>
-      <% end %>
+
+        </div>
+
     <% end %>
+
 
     <%= yield %>
 
