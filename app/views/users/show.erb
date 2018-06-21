@@ -3,7 +3,7 @@
 
 <% if !current_user.categories.empty? %>
   <% current_user.categories.each do |category| %>
-    <a href="/users/<%=current_user.username%>/<%=category.name%>"><%=category.name%></a>
+    <a href="/users/<%=current_user.username%>/<%=category.slug %>"><%=category.name%></a>
   <% end %>
 
 <% else %>

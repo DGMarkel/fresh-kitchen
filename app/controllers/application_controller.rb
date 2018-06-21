@@ -60,11 +60,11 @@ class ApplicationController < Sinatra::Base
       redirect :"/users/#{current_user.username}/foods/new"
     end
     category = Category.find_by(id: food.category_id)
-    redirect to :"/users/#{current_user.user_slug}/#{category.name}"
+    redirect to :"/users/#{current_user.user_slug}/#{category.slug}"
   end
 
   get '/users/:user_slug/:category' do
-    category_id = Category.find_by(name: params[:category]).id
+    category_id = Category.find_by_slug(params[:category]).id
     @foods = current_user.foods.where(category_id: category_id)
     erb :'/foods/show_food_by_category'
   end
