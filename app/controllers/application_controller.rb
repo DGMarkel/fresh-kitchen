@@ -14,7 +14,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
-    erb :'/users/create_user'
+    if !logged_in?
+      erb :'/users/create_user'
+    else
+      redirect :"/users/#{current_user.username}"
+    end
   end
 
   post '/signup' do
@@ -32,7 +36,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    @user = User.find_by(params[:username])
+    @user = User.find_by(username: params[:username])
     session[:user_id] = @user.id
     redirect to :"/users/#{@user.user_slug}"
   end
