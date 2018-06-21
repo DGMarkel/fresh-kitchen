@@ -103,7 +103,6 @@ class ApplicationController < Sinatra::Base
 
   post '/users/:user_slug/:category/:food' do
     @food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
-    binding.pry
     @food.update(params[:update])
     redirect :"/users/#{params[:user_slug]}/#{params[:category]}/#{params[:food]}"
   end
