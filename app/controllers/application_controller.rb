@@ -85,13 +85,6 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/users/:user_slug/:category/:food' do
-    if current_user.foods.find_by(name: params[:food].gsub("-", " "))
-      @food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
-      erb :'/foods/show_food'
-    end
-  end
-
   get '/users/:user_slug/:category/:food/edit' do
     if logged_in?
       @food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
@@ -104,7 +97,7 @@ class ApplicationController < Sinatra::Base
   post '/users/:user_slug/:category/:food' do
     @food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
     @food.update(params[:update])
-    redirect :"/users/#{params[:user_slug]}/#{params[:category]}/#{params[:food]}"
+    redirect :"/users/#{params[:user_slug]}/#{params[:category]}"
   end
 
   delete '/users/:user_slug/:category/:food/delete' do
