@@ -1,0 +1,16 @@
+<h1>Modify <%= params[:category] details for:</h1>
+
+<h3><%= params[:food]</h3>
+
+<form action="/users/<%= params[:user_slug]%>/<% params[:category]" method="post">
+
+  <label>Quantity: </label><input type="text" name="user[quantity]" value="@food.quantity">
+
+  <label>Expiration Date: </label><input type="text" name="user[expiration_date]" value="@food.expiration_date">
+
+  <p></p>
+
+  <input type="submit" name="Submit">
+
+  <input type="submit" value="submit">
+</form>
