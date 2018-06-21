@@ -3,7 +3,7 @@
 <% if !current_user.foods.empty? %>
 
   <% current_user.foods.each do |food| %>
-    <p><a href="/users/<%= current_user.username %>/<%= food.name.gsub(" ", "-") %>"><%= food.name %></a></p>
+    <p><a href="/users/<%= current_user.username %>/<%= food.category %>/<%= food.name.gsub(" ", "-") %>"><%= food.name %></a></p>
   <% end %>
 
 <% else %>

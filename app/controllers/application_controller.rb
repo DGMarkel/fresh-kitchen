@@ -60,7 +60,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:user_slug/:category/:food' do
-    if logged_in? && current_user.foods.include?(params[:food])
+    if current_user.foods.find_by(name: params[:food])
       @food = current_user.foods.find_by(name: params[:food])
       erb :'/foods/show_food'
     end
