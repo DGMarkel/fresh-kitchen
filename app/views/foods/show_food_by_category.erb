@@ -1,6 +1,6 @@
-<% if !@foods.empty? %>
+<% if @foods.find_by(category: params[:category]) %>
 
-  <% category_foods = @foods.collect {|food| food if food.category == params[:category].gsub("s","")} %>
+  <% category_foods = @foods.collect {|food| food if food.category == params[:category]} %>
     <% category_foods.each do |food| %>
       <p><a href="/users/<%= params[:user_slug] %>/<%= food.category %>/<%= food.name %>"><%= food.name %>:</a></p>
         <ul>
