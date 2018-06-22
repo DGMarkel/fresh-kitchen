@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
     if !logged_in?
       erb :welcome
     else
-      redirect :"/users/#{current_user.username}"
+      redirect :"/users/#{current_user.slug}"
     end
   end
 

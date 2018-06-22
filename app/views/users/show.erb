@@ -4,7 +4,7 @@
 <% if !current_user.categories.empty? %>
 
  <% current_user.categories.each do |category| %>
-    <p><a href="/users/<%=current_user.username%>/<%=category.slug %>"><%=category.name%></a>: <%= category.foods.count %> item(s)</p>
+    <p><a href="/users/<%=current_user.slug%>/<%=category.slug %>"><%=category.name%></a>: <%= category.foods.count %> item(s)</p>
 
     <% if !category.almost_expired_foods.empty? %>
 

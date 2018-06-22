@@ -44,10 +44,14 @@ class FoodController < ApplicationController
   post '/users/:user_slug/:category/:food' do
     @food = current_user.foods.find_by_slug(params[:food])
     @food.update(params[:update])
+    if !params[:new][:category].empty?
+      category_new = Category.create(name: params[:new][:category], user_id: current_user.id)
+      @food.update(category_id: category_new.id)
+    end
     redirect :"/users/#{current_user.slug}/#{params[:category]}"
   end
 
-  delete '/users/:user_slug/:category/:food/delete' do
+  get '/users/:user_slug/:category/:food/delete' do
     if logged_in?
       food = current_user.foods.find_by_slug(params[:food])
       food.delete

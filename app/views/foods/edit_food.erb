@@ -2,11 +2,29 @@
 
 <form action="/users/<%= params[:user_slug] %>/<%= params[:category] %>/<%= params[:food] %>" method="post">
 
+  <label>Name: </label><input type="text" name="update[name]" value="<%= @food.name %>">
+
+  <p></p>
+
   <label>Quantity: </label><input type="text" name="update[quantity]" value="<%= @food.quantity %>">
 
   <p></p>
 
   <label>Expiration Date: </label><input type="text" name="update[expiration_date]" value="<%= @food.expiration_date %>">
+
+  <p></p>
+
+  <label>Select a Category: </label>
+
+    <% if !current_user.categories.empty? %>
+      <% current_user.categories.each do |category| %>
+      <input type="radio" name="update[category_id]" value="<%= category.id %>"><label><%= category.name %></label>
+      <% end %>
+    <% end %>
+
+  <p></p>
+
+  <label>Add a New Category: </label><input type="text" name="new[category]">
 
   <p></p>
 
