@@ -2,15 +2,15 @@
 
 <form action="/users/<%= params[:user_slug] %>/<%= params[:category] %>/<%= params[:food] %>" method="post">
 
-  <label>Name: </label><input type="text" name="update[name]" value="<%= @food.name %>">
+  <label>Name: </label><input class="inputForm" type="text" name="update[name]" value="<%= @food.name %>">
 
   <p></p>
 
-  <label>Quantity: </label><input type="text" name="update[quantity]" value="<%= @food.quantity %>">
+  <label>Quantity: </label><input class="inputForm" type="text" name="update[quantity]" value="<%= @food.quantity %>">
 
   <p></p>
 
-  <label>Expiration Date: </label><input type="text" name="update[expiration_date]" value="<%= @food.expiration_date %>">
+  <label>Expiration Date: </label><input class="inputForm" type="text" name="update[expiration_date]" value="<%= @food.expiration_date %>">
 
   <p></p>
 
@@ -24,7 +24,7 @@
 
   <p></p>
 
-  <label>Add a New Category: </label><input type="text" name="new[category]">
+  <label>Add a New Category: </label><input class="inputForm" type="text" name="new[category]">
 
   <p></p>
 
