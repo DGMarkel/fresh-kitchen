@@ -38,4 +38,8 @@ class Food < ActiveRecord::Base
     self.date_splitter[0] == Time.now.year && self.date_splitter[1] == Time.now.month && Time.now.day < self.date_splitter[2] && self.date_splitter[2] - Time.now.day <= 2
   end
 
+  def days_until_expiration
+    "#{self.date_splitter[2] - Time.now.day} days."
+  end
+
 end
