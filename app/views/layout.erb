@@ -15,6 +15,7 @@
   <body>
 
     <% if logged_in? %>
+
       <header style="width:100%;height:18px;background:lightgray">
         <a href="/users/<%= current_user.username %>">Home</a>
         <a href="/users/<%= current_user.username %>/foods/new" style="margin-left:5px;">Add Item</a>
@@ -23,22 +24,19 @@
 
       <div class="warning">
 
-        <% expired = current_user.foods.select {|food| Date.today.strftime == food.expiration_date} %>
+      <% if !current_user.expired_foods.empty? %>
 
-
-
-        <% if !expired.empty? %>
-
-          <% expired.each do |food| %>
+          <% current_user.expired_foods.each do |food| %>
 
             <p>*** Your <%= food.name.downcase %> expired today and <%= food.first_pronoun %>
               removed from your inventory. Eat <%= food.second_pronoun %> quick or dump
               <%= food.second_pronoun %> in the trash! ***</p>
+
+              <% food.delete %>
+
           <% end %>
-          <% expired.each do |food| %>
-            <% food.delete %>
-          <% end %>
-        <% end %>
+
+      <% end %>
 
         </div>
 

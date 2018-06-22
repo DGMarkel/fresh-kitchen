@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
     self.all.find {|user| user.slug == slug}
   end
 
+  def expired_foods
+    self.foods.select {|food| food.expired? }
+  end
+
 end
