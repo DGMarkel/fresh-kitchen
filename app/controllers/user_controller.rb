@@ -11,10 +11,16 @@ class UserController < ApplicationController
 
   post '/signup' do
     if !params[:username].empty? && !params[:password].empty?
-      @user = User.create(params)
-      session[:user_id] = @user.id
-      redirect to :"/users/#{@user.user_slug}"
+      if !User.find_by(username: params[:username])
+        @user = User.create(params)
+        session[:user_id] = @user.id
+        redirect to :"/users/#{@user.user_slug}"
+      else
+        flash[:message] = "An account already exists for #{params[:username]}."
+        redirect :'/signup'
+      end
     else
+      flash[:message] = "You must fill in all required fields."
       redirect :'/signup'
     end
   end
@@ -32,8 +38,8 @@ class UserController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect :"/users/#{@user.user_slug}"
-      flash[:message] = "Welcome back, #{current_user.username}."
     else
+      flash[:message] = "Invalid Entry.  Please try again."
       redirect :'/login'
     end
   end

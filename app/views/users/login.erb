@@ -1,3 +1,5 @@
+
+
 <h1>Login Page</h1>
 
 <form action="/login" method="post">
@@ -5,6 +7,8 @@
   <p><label>Username: </label><input type="text" name="username"></p>
   <p><label>Password: <input type="password" name="password"></label></p>
 
+  <p class="warning"><% if flash.has?(:message) %><%= flash[:message] %><% end %></p>
+  
   <p><input type="submit" value="submit"><p>
   <p>New to the site? <a href="/signup">Sign up</a> for a new account.</p>
 
