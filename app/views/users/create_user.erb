@@ -1,12 +1,23 @@
-<h1>Signup</h1>
+<style>
 
-<form action="/signup" method="post">
+  body {
+    background: rgb(255 229 166)
+  }
 
-  <p>Username: <input type="text" name="username"></p>
-  <p>Password: <input type="password" name="password"></p>
+</style>
 
-  <p class="warning"><% if flash.has?(:message) %><%= flash[:message] %><% end %></p>
+<div class="entryPoint">
 
-  <input type="submit" value="Create Account">
+  <h1>nice to meet you</h1>
 
-</form>
+  <form action="/signup" method="post">
+
+    <p>Username: <input class="inputForm" type="text" name="username"></p> Password: <input class="inputForm" type="password" name="password"></p>
+
+    <p class="warning"><% if flash.has?(:message) %><%= flash[:message] %><% end %></p>
+
+    <input type="submit" value="Create Account">
+
+  </form>
+
+</div>

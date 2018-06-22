@@ -9,13 +9,15 @@
   <body>
 
     <% if logged_in? %>
-      <h1 style="float:left;margin-bottom:0px;">Fresh Kitchen</h1>
+      <div style="width:100%;background:white;height:100px;margin-bottom:0px;">
+      <h1 style="font-size:100px;float:left;margin-bottom:0px;margin-top:0px;">Fresh Kitchen</h1>
+      </div>
       <header>
         <a href="/users/<%= current_user.slug %>">Home</a>
         <a href="/users/<%= current_user.slug %>/foods/new" style="margin-left:5px;">Add Item</a>
         <a href="/logout" style="float:right;">Sign Out</a>
       </header>
-      <p style="float:right;font-size:10px;margin-top:2px;">Currently logged in as: <%= current_user.username %></p>
+      <p style="float:right;font-size:10px;margin-top:2px;background:white;">Currently logged in as: <%= current_user.username %></p>
 
       <div class="expired">
 
