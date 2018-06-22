@@ -87,7 +87,7 @@ class ApplicationController < Sinatra::Base
 
   get '/users/:user_slug/:category/:food/edit' do
     if logged_in?
-      @food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
+      @food = current_user.foods.find_by_slug(params[:food])
       erb :'/foods/edit_food'
     else
       redirect :/

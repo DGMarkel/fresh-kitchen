@@ -25,19 +25,15 @@
 
         <% expired = current_user.foods.select {|food| Date.today.strftime == food.expiration_date} %>
 
+
+
         <% if !expired.empty? %>
 
           <% expired.each do |food| %>
 
-            <!-- conjugation helpers -->
-              <% food.name[-1] == "s" ? first_pronoun = "were" : first_pronoun = "was" %>
-              <% second_pronoun = "them" if food.name[-1] == "s" %>
-              <% food.name[-1] == "s" ? possessive = "have" : possessive = "has" %>
-            <!-- end of helpers -->
-
-            <p>*** Your <%= food.name.downcase %> expired today and <%= first_pronoun %>
-              removed from your inventory. Eat <%= second_pronoun %> quick or dump
-              <%= second_pronoun %> in the trash! ***</p>
+            <p>*** Your <%= food.name.downcase %> expired today and <%= food.first_pronoun %>
+              removed from your inventory. Eat <%= food.second_pronoun %> quick or dump
+              <%= food.second_pronoun %> in the trash! ***</p>
           <% end %>
           <% expired.each do |food| %>
             <% food.delete %>
