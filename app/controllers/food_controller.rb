@@ -24,8 +24,8 @@ class FoodController < ApplicationController
 
   get '/users/:user_slug/:category' do
     if logged_in?
-      category_id = Category.find_by_slug(params[:category]).id
-      @foods = current_user.foods.where(category_id: category_id)
+      category_id = current_user.categories.find_by_slug(params[:category]).id
+      @foods = current_user.foods.select {|food| food.category_id == category_id}
       erb :'/foods/show_food_by_category'
     else
       redirect :/

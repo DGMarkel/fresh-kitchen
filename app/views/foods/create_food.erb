@@ -5,36 +5,40 @@
   }
 </style>
 
-<h1>Inventory Add Form</h1>
+<div class="createFood">
 
-<form action="/users/<%= current_user.username %>/foods" method="post">
+  <h1>so you got some new goodies, eh?</h1>
 
-  <label>Name: </label><input type="text" name="food[name]">
+  <form action="/users/<%= current_user.username %>/foods" method="post">
 
-  <p></p>
+    <label>Name: </label><input class="inputForm" type="text" name="food[name]">
 
-  <label>Quantity: </label><input type="text" name="food[quantity]">
+    <p></p>
 
-  <p></p>
+    <label>Quantity: </label><input class="inputForm" type="text" name="food[quantity]">
 
-  <label>Expiration Date: </label><input type="date" name="food[expiration_date]">
+    <p></p>
 
-  <p></p>
+    <label>Expiration: </label><input class="inputForm" type="date" name="food[expiration_date]">
 
-  <label>Select a Category: </label>
-    <% if !current_user.categories.empty? %>
-      <% current_user.categories.each do |category| %>
-      <input type="radio" name="category[id]" value="<%= category.id %>"><label><%= category.name %></label>
+    <p></p>
+
+    <label>Select a Category: </label>
+      <% if !current_user.categories.empty? %>
+        <% current_user.categories.each do |category| %>
+        <input type="radio" name="category[id]" value="<%= category.id %>"><label><%= category.name %></label>
+        <% end %>
       <% end %>
-    <% end %>
 
-  <p></p>
+    <p></p>
 
-  <label>Add a New Category:</label>
-    <input type="text" name="category[name]">
+    <label>Add a New Category:</label>
+      <input class="inputForm" type="text" name="category[name]">
 
-  <p></p>
+    <p></p>
 
-  <input type="submit" name="Submit">
+    <input type="submit" name="Submit">
 
-</form>
+  </form>
+
+</div>

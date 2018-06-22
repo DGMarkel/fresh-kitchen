@@ -72,11 +72,22 @@ input[type=submit] {
     font-family: Tahoma;
     background: #f4f4f4;
   }
-/* User Show Page Styling */
 
-.userHome h1, h4, p, li {
-  display: table;
-  background: white;
+/* Create Food Page Styling */
+
+.createFood {
+  text-align: center;
+  font-size: 24px;
+  position: relative;
+  margin: 0 auto;
+  width: 450px;
+  background: rgba(255,255,255, 0.5);
+  border-radius: 5%;
+}
+
+.createFood label {
+  text-align: center;
+  font-weight: bold;
 }
 
 /* Do I need these? */

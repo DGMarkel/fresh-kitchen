@@ -1,5 +1,9 @@
+<style>
+  body {
+    background-color: rgb(0, 92, 145);
+  }
+</style>
 <h1><%= Category.find_by_slug(params[:category]).name %></h1>
-
 <% if !@foods.empty? %>
 
   <% @foods.each do |food| %>
