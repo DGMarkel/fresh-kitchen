@@ -11,6 +11,10 @@
         text-align: center;
       }
 
+      .warning {
+        color: red;
+      }
+
     </style>
 
   </head>
@@ -38,20 +42,7 @@
 
       <% end %>
 
-    </div><div class="almost_expired">
-
-      <% if !current_user.almost_expired_foods.empty? %>
-
-          <p>
-          The following foods will expire soon:
-          <% current_user.almost_expired_foods.each do |food| %>
-            <a href = "/users/<%= current_user.username %>/<%= food.name %>"><%= food.name %></a>, in  <%= food.days_until_expiration %>
-          <% end %>
-          </p>
-
-      <% end %>
-
-        </div>
+    </div>
 
     <% end %>
 

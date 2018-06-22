@@ -10,4 +10,8 @@ class Category < ActiveRecord::Base
     self.all.find {|category| category.slug == slug}
   end
 
+  def almost_expired_foods
+    self.foods.select {|food| food.almost_expired?}
+  end
+
 end

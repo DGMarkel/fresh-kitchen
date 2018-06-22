@@ -1,15 +1,5 @@
 class FoodController < ApplicationController
 
-  get '/users/:user_slug/:food/' do
-    binding.pry
-    if logged_in?
-      @food = current_user.foods.find_by_slug(params[:food])
-      erb :'/foods/show_food'
-    else
-      redirect to :/
-    end
-  end
-
   get '/users/:user_slug/foods/new' do
     if logged_in?
       erb :'/foods/create_food'
