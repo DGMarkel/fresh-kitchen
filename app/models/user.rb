@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   has_many :categories
   has_many :foods, through: :categories
 
+  def valid_password?
+  end
+
   def user_slug
     self.username.gsub(" ", "-")
   end
