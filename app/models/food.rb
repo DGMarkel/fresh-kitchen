@@ -25,10 +25,6 @@ class Food < ActiveRecord::Base
     end
   end
 
-  def expired?
-    self.expiration_date == Date.today.strftime
-  end
-
   def date_splitter
     date_array = self.expiration_date.split("-")
     date_array.collect {|date| date.to_i}
@@ -40,6 +36,10 @@ class Food < ActiveRecord::Base
 
   def days_until_expiration
     "#{self.date_splitter[2] - Time.now.day} days."
+  end
+
+  def expired?
+    self.date_splitter[0] == Time.now.year && self.date_splitter[1] == Time.now.month && self.date_splitter[2] - Time.now.day <= 0
   end
 
 end

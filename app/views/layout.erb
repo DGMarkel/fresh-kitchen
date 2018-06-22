@@ -21,11 +21,13 @@
   <body>
 
     <% if logged_in? %>
-      <header style="width:100%;height:18px;background:lightgray">
+      <h1 style="float:left;margin-bottom:0px;">Fresh Kitchen</h1>
+      <header style="width:100%;height:18px;background:lightgray;clear:both;">
         <a href="/users/<%= current_user.username %>">Home</a>
         <a href="/users/<%= current_user.username %>/foods/new" style="margin-left:5px;">Add Item</a>
         <a href="/logout" style="float:right;">Sign Out</a>
       </header>
+      <p style="float:right;font-size:10px;margin-top:2px;">Currently logged in as: <%= current_user.username %></p>
 
       <div class="expired">
 
