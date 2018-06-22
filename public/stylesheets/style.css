@@ -1,0 +1,15 @@
+header {
+  width:100%;
+  height:18px;
+  background:lightgray;
+  clear:both;
+}
+
+.expired {
+  color: red;
+  text-align: center;
+}
+
+.warning {
+  color: red;
+}
