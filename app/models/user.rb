@@ -6,11 +6,11 @@ class User < ActiveRecord::Base
   def valid_password?
   end
 
-  def user_slug
+  def slug
     self.username.gsub(" ", "-")
   end
 
-  def self.find_by_user_slug(slug)
+  def self.find_by_slug(slug)
     self.all.find {|user| user.slug == slug}
   end
 

@@ -16,10 +16,10 @@ class FoodController < ApplicationController
       category_new = Category.create(name: params[:category][:name], user_id: current_user.id)
       food.update(category_id: category_new.id)
     else
-      redirect :"/users/#{current_user.username}/foods/new"
+      redirect :"/users/#{current_user.slug}/foods/new"
     end
     category = Category.find_by(id: food.category_id)
-    redirect to :"/users/#{current_user.user_slug}/#{category.slug}"
+    redirect to :"/users/#{current_user.slug}/#{category.slug}"
   end
 
   get '/users/:user_slug/:category' do
@@ -42,16 +42,16 @@ class FoodController < ApplicationController
   end
 
   post '/users/:user_slug/:category/:food' do
-    @food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
+    @food = current_user.foods.find_by_slug(params[:food])
     @food.update(params[:update])
-    redirect :"/users/#{params[:user_slug]}/#{params[:category]}"
+    redirect :"/users/#{current_user.slug}/#{params[:category]}"
   end
 
   delete '/users/:user_slug/:category/:food/delete' do
     if logged_in?
-      food = current_user.foods.find_by(name: params[:food].gsub("-", " "))
+      food = current_user.foods.find_by_slug(params[:food])
       food.delete
-      redirect :"/users/#{params[:user_slug]}/#{params[:category]}"
+      redirect :"/users/#{current_user.slug}/#{params[:category]}"
     else
       redirect :/
     end
