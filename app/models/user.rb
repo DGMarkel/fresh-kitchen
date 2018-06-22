@@ -12,7 +12,11 @@ class User < ActiveRecord::Base
   end
 
   def expired_foods
-    self.foods.select {|food| food.expired? }
+    self.foods.select {|food| food.expired?}
+  end
+
+  def almost_expired_foods
+    self.foods.select {|food| food.almost_expired?}
   end
 
 end

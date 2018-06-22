@@ -15,7 +15,6 @@
   <body>
 
     <% if logged_in? %>
-
       <header style="width:100%;height:18px;background:lightgray">
         <a href="/users/<%= current_user.username %>">Home</a>
         <a href="/users/<%= current_user.username %>/foods/new" style="margin-left:5px;">Add Item</a>
@@ -25,7 +24,6 @@
       <div class="warning">
 
       <% if !current_user.expired_foods.empty? %>
-
           <% current_user.expired_foods.each do |food| %>
 
             <p>*** Your <%= food.name.downcase %> expired today and <%= food.first_pronoun %>
@@ -34,6 +32,14 @@
 
               <% food.delete %>
 
+          <% end %>
+
+      <% end %>
+
+      <% if !current_user.almost_expired_foods.empty? %>
+          <p>The following foods will expire soon:
+          <% current_user.almost_expired_foods.each do |food| %>
+            <%= food.name %>, on  <%= food.expiration_date %>
           <% end %>
 
       <% end %>

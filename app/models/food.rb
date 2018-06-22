@@ -30,24 +30,12 @@ class Food < ActiveRecord::Base
   end
 
   def date_splitter
-    self.expiration_date.split
+    date_array = self.expiration_date.split("-")
+    date_array.collect {|date| date.to_i}
   end
 
   def almost_expired?
-  end  
+    self.date_splitter[0] == Time.now.year && self.date_splitter[1] == Time.now.month && Time.now.day < self.date_splitter[2] && self.date_splitter[2] - Time.now.day <= 2
+  end
 
-
-
-
-
-
-
-
-=begin
-        <!--<% almost_expired = current_user.foods.select do |food| %>
-          <% date_array = food.expiration_date.split("-") %>
-          <% Date.today.strftime.month == date_array[1] && Date.today.strftime.day > date_array[3] &&
-            Date.today.strftime.day - date_array[3] < 2 %>
-        -->
-=end
 end
