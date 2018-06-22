@@ -9,7 +9,7 @@
     <% if !category.almost_expired_foods.empty? %>
 
       <ul class="warning">
-        <% current_user.almost_expired_foods.each do |food| %>
+        <% category.almost_expired_foods.each do |food| %>
         <li>
           <%= food.name %> will expire in  <%= food.days_until_expiration %>
           <a href="https://www.freshdirect.com/srch.jsp?pageType=search&searchParams=<%=food.name.downcase%>" target="_blank">Order more?</a>
