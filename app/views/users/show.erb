@@ -1,12 +1,15 @@
-
-
 <div class="userHome">
 
-<h4>Welcome, <%= current_user.username %></h1>
-<h1>The Kitchen Sitch:</h4>
+<h4 style="margin-bottom:10px;">Welcome, <%= current_user.username %></h4>
+<h1 style="margin:0px;">The Kitchen Sitch</h1>
+<h3 style="margin-top:0px;"><strong>Here's what you've got in your kitchen:</strong></h3>
+
 <% if !current_user.categories.empty? %>
 
  <% current_user.categories.each do |category| %>
+
+  <% if !category.foods.empty? %>
+
     <p><a href="/users/<%=current_user.slug%>/<%=category.slug %>"><%=category.name%></a>: <%= category.foods.count %> item(s)</p>
 
     <% if !category.almost_expired_foods.empty? %>
@@ -20,6 +23,7 @@
         <% end %>
       </ul>
 
+      <% end %>
    <% end %>
   <% end %>
 
