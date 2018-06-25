@@ -18,9 +18,11 @@
 
     <label>Select a Category: </label>
       <% if !current_user.categories.empty? %>
+        <select name="category[id]">
         <% current_user.categories.each do |category| %>
-        <input type="radio" name="category[id]" value="<%= category.id %>"><label><%= category.name %></label>
+          <option value="<%= category.id %>"><%= category.name %></option>  
         <% end %>
+        </select>
       <% end %>
 
     <p></p>
