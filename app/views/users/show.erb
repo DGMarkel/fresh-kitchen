@@ -1,8 +1,7 @@
 <div class="userHome">
 
-<h4 style="margin-bottom:10px;">Welcome, <%= current_user.username %></h4>
-<h1 style="margin:0px;">The Kitchen Sitch</h1>
-<h3 style="margin-top:0px;"><strong>Here's what you've got in your kitchen:</strong></h3>
+<p style="float:right;font-size:10px;margin:2px 2px 0 0;">Currently logged in as: <%= current_user.username %></p>
+<h1 style="margin-top:0px;"><strong>Here's what you've got in your kitchen:</strong></h3>
 
 <% if !current_user.categories.empty? %>
 
