@@ -36,14 +36,23 @@ a:hover {
   width: 415px;
 }
 
-.welcome span {
-  float: right;
-}
-
 .welcome h1 {
   color: black;
   font-size: 60px;
   margin-bottom: 10px;
+}
+
+#strawberry {
+  position: relative;
+  right: 200px;
+  height: 88%;
+  width: auto;
+}
+
+#pear {
+  position: fixed;
+  height: 100%;
+  width: auto;
 }
 
 /* Login Page Styling */
