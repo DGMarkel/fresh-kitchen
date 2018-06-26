@@ -10,8 +10,10 @@ class FoodController < ApplicationController
 
   post '/users/:user_slug/foods' do
     food = Food.create(params[:food])
-    if !params[:category][:id].empty?
-      food.update(category_id: params[:category][:id])
+    if params[:category][:id]
+      if !params[:category][:id].empty?
+        food.update(category_id: params[:category][:id])
+      end
     elsif !params[:category][:name].empty?
       category_new = Category.create(name: params[:category][:name], user_id: current_user.id)
       food.update(category_id: category_new.id)
