@@ -10,10 +10,8 @@ class FoodController < ApplicationController
 
   post '/users/:user_slug/foods' do
     food = Food.create(params[:food])
-    if params[:category][:id]
-      if !params[:category][:id].empty?
-        food.update(category_id: params[:category][:id])
-      end
+    if !params[:category][:id].empty?
+      food.update(category_id: params[:category][:id])
     elsif !params[:category][:name].empty?
       category_new = Category.create(name: params[:category][:name], user_id: current_user.id)
       food.update(category_id: category_new.id)
@@ -21,6 +19,7 @@ class FoodController < ApplicationController
       redirect :"/users/#{current_user.slug}/foods/new"
     end
     category = Category.find_by(id: food.category_id)
+
     redirect to :"/users/#{current_user.slug}/#{category.slug}"
   end
 
@@ -46,9 +45,13 @@ class FoodController < ApplicationController
   post '/users/:user_slug/:category/:food' do
     @food = current_user.foods.find_by_slug(params[:food])
     @food.update(params[:update])
-    if !params[:new][:category].empty?
+    if !params[:new][:existing_category].empty? && params[:new][:category].empty?
+      @food.update(category_id: params[:new][:existing_category])
+    elsif !params[:new][:category].empty? && params[:new][:existing_category].empty?
       category_new = Category.create(name: params[:new][:category], user_id: current_user.id)
       @food.update(category_id: category_new.id)
+    else
+      redirect '/users/:user_slug/:category/:food/edit'
     end
     redirect :"/users/#{current_user.slug}/#{params[:category]}"
   end

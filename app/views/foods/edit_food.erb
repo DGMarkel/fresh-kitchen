@@ -28,10 +28,10 @@
   <label>Select a Category: </label>
 
     <% if !current_user.categories.empty? %>
-    <select class="createEditSelect" name="category[id]">
-      <option value=""></option>
+    <select name="new[existing_category]">
+      <option value = "">
     <% current_user.categories.each do |category| %>
-      <option value="<%= category.id %>"><%= category.name %></option>
+      <option value="<%=category.id%>"><%= category.name %></option>
     <% end %>
   </select>
     <% end %>
