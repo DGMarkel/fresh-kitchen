@@ -16,6 +16,17 @@ header {
   clear:both;
  }
 
+#button {
+  float:left;
+  background: white;
+  height:30px;
+  width:75px;
+  margin:0;
+  padding:5px 0 0 10px;
+  border-bottom-right-radius:10px;
+  opacity:0.7
+}
+
  h1 {
    font-family: 'Song Myung', serif;
  }
