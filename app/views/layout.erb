@@ -20,10 +20,10 @@
     <% if logged_in? %>
     <header>
       <a href="/users/<%= current_user.slug %>" style="float:left;margin-left:10px;text-decoration:none;">Fresh Kitchen</a>
-      <a href="/logout" style="float:right;text-decoration:none;margin-right:10px;">Sign Out</a>
     </header>
-      <a href="users/<%current_user.username%>/foods/new" id="button">Add Item</a>
-      <p style="float:right;font-size:14px;background:white;margin-top:0;">Currently logged in as: <%= current_user.username %></p>
+      <a href="users/<%current_user.username%>/foods/new" class="marginFix" id="button">Add Item</a>
+      <a href="/logout" class="marginFix" id="buttonRight";>Sign Out</a>
+      <p class="marginFix" style="float:right;font-size:14px;background:white;margin-top:0;">Currently logged in as: <%= current_user.username %></p>
 
 
       <div class="expired">
