@@ -1,11 +1,18 @@
+html, body {
+  margin:0;
+  padding:0;
+}
+
 body {
   font-family: 'Song Myung', serif;
 }
 
 header {
+  font-size: 35px;
   width:100%;
-  height:20px;
-  background:white;
+  height: 50px;
+  margin: 0px;
+  background: white;
   clear:both;
  }
 
@@ -16,6 +23,11 @@ header {
  label {
    font-family: 'Song Myung', serif;
  }
+
+hr {
+  border: 10px dotted black;
+  border-style: none none dotted;
+}
 
 #layoutHeader {
   font-family: 'Song Myung', serif;
@@ -137,6 +149,18 @@ input[type=submit] {
 /* User Home Styling */
 
 .userHome {
+  font-family: 'Song Myung', serif;
+  font-size: 24px;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  top: 100px;
+  width: 415px;
+}
+
+/* Edit Page Styling */
+
+.editFood, .showFood {
   font-family: 'Song Myung', serif;
   font-size: 24px;
   text-align: center;

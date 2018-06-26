@@ -1,12 +1,14 @@
+<div class="showFood">
+
 <h1><%= Category.find_by_slug(params[:category]).name %></h1>
 <% if !@foods.empty? %>
 
   <% @foods.each do |food| %>
 
-      <hr style="1px dotted black">
+      <hr>
       <h3><%= food.name %>:</h3>
 
-        <ul>
+        <ul style="list-style-type:none;">
           <li>Quantity: <%= food.quantity %></li>
           <li>Expiration Date: <%= food.expiration_date %></li>
         </ul>
@@ -32,3 +34,5 @@
     <p>You are currently out of <%= params[:category].gsub("-", " ") %>.</p>
 
   <% end %>
+
+</div>
