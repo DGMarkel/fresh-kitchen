@@ -9,45 +9,37 @@
 
 <div class="createFood">
 
-  <h1><strong>Add items to your kitchen inventory:</strong></h1>
+  <h1>Inventory Add Form</h1>
 
-  <form action="/users/<%= current_user.username %>/foods" method="post">
+<form action="/users/<%= current_user.username %>/foods" method="post">
 
-    <label>Name: </label><input class="inputForm" type="text" name="food[name]">
+  <label>Name: </label><input type="text" name="food[name]">
 
-    <p></p>
+  <p></p>
 
-    <label>Quantity: </label><input class="inputForm" type="text" name="food[quantity]">
+  <label>Quantity: </label><input type="text" name="food[quantity]">
 
-    <p></p>
+  <p></p>
 
-    <label>Expiration: </label><input class="inputForm" type="date" name="food[expiration_date]">
+  <label>Expiration Date: </label><input type="date" name="food[expiration_date]">
 
-    <p></p>
+  <p></p>
 
-    <label>Select a Category: </label>
-
-    <p>
-      <% if !current_user.categories.empty? %>
-        <select class="createEditSelect" name="category[id]">
-          <option value=""></option>
-        <% current_user.categories.each do |category| %>
-          <option value="<%= category.id %>"><%= category.name %></option>
-        <% end %>
-        </select>
+  <label>Select a Category: </label>
+    <% if !current_user.categories.empty? %>
+      <% current_user.categories.each do |category| %>
+      <input type="radio" name="category[id]" value="<%= category.id %>"><label><%= category.name %></label>
       <% end %>
-    </p>
+    <% end %>
 
+  <p></p>
 
-    <p></p>
+  <label>Add a New Category:</label>
+    <input type="text" name="category[name]">
 
-    <label>Add a New Category:</label>
-      <input class="inputForm" type="text" name="category[name]">
+  <p></p>
 
-    <p></p>
+  <input type="submit" name="Submit">
 
-    <input type="submit" name="Submit">
-
-  </form>
-
+</form>
 </div>

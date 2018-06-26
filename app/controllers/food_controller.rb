@@ -10,22 +10,22 @@ class FoodController < ApplicationController
 
   post '/users/:user_slug/foods' do
     food = Food.create(params[:food])
-    if !params[:category][:id].empty?
-        food.update(category_id: params[:category][:id])
-        redirect:"/users/#{current_user.slug}/#{food.category.slug}"
-    elsif !params[:category][:name].empty? && !current_user.categories.find_by(name: params[:category][:name])
+    if params[:category][:id]
+      food.update(category_id: params[:category][:id])
+    elsif !params[:category][:name].empty?
       category_new = Category.create(name: params[:category][:name], user_id: current_user.id)
       food.update(category_id: category_new.id)
     else
       redirect :"/users/#{current_user.slug}/foods/new"
     end
-    redirect:"/users/#{current_user.slug}/#{food.category.slug}"
+    category = Category.find_by(id: food.category_id)
+    redirect to :"/users/#{current_user.slug}/#{category.slug}"
   end
 
   get '/users/:user_slug/:category' do
     if logged_in?
-      category_id = current_user.categories.find_by_slug(params[:category]).id
-      @foods = current_user.foods.select {|food| food.category_id == category_id}
+      category_id = Category.find_by_slug(params[:category]).id
+      @foods = current_user.foods.where(category_id: category_id)
       erb :'/foods/show_food_by_category'
     else
       redirect :/
@@ -43,16 +43,12 @@ class FoodController < ApplicationController
 
   post '/users/:user_slug/:category/:food' do
     @food = current_user.foods.find_by_slug(params[:food])
-    if !params[:update][:category].empty? && params[:new][:category].empty?
-      @food.update(category_id: params[:update][:category].to_i)
-      redirect "/users/#{current_user.slug}/@food.slug}"
-    elsif !params[:update][:new_category].empty? && params[:update][:existing_category].empty? && !current_user.categories.find_by(params[:update][:new_category])
+    @food.update(params[:update])
+    if !params[:new][:category].empty?
       category_new = Category.create(name: params[:new][:category], user_id: current_user.id)
       @food.update(category_id: category_new.id)
-      redirect "/users/#{current_user.slug}/#{category_new.name}"
-    else
-      redirect :"/users/#{current_user.slug}/#{@food.category.slug}"
     end
+    redirect :"/users/#{current_user.slug}/#{params[:category]}"
   end
 
   get '/users/:user_slug/:category/:food/delete' do
