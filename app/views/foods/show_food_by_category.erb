@@ -1,3 +1,12 @@
+<style>
+
+  body {
+    background-image: url("/photos/apricot_wallpaper.jpg");
+    background-size: cover;
+  }
+
+</style>
+
 <div class="showFood">
 
 <h1><%= Category.find_by_slug(params[:category]).name %></h1>
@@ -6,25 +15,29 @@
   <% @foods.each do |food| %>
 
       <hr>
-      <h3><%= food.name %>:</h3>
+      <div style="text-align:center">
 
-        <ul style="list-style-type:none;">
-          <li>Quantity: <%= food.quantity %></li>
-          <li>Expiration Date: <%= food.expiration_date %></li>
-        </ul>
+          <ul style="list-style-type:none;">
+          <h3 style="margin-bottom: 0px;"><%= food.name %>:</h3>
+              <li>Quantity: <%= food.quantity %></li>
+              <li>Expiration Date: <%= food.expiration_date %></li>
+          </ul>
 
       <form action="/users/<%= current_user.slug %>/<%= params[:category] %>/<%= food.slug %>/edit" method="get">
         <input type="submit" value="Edit <%= food.name %>">
       </form>
 
-      <p></p>
-
       <form action="/users/<%= current_user.slug %>/<%= params[:category] %>/<%= food.slug %>/delete" method="get">
         <input type="submit" value="Delete <%= food.name %>">
       </form>
 
+    </div>
+
+
+
+
       <% if food == @foods.last %>
-        <hr style="1px dotted black">
+        <hr>
       <% end %>
 
   <% end %>

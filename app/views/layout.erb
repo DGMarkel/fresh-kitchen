@@ -19,11 +19,12 @@
 
     <% if logged_in? %>
     <header>
-      <a href="/users/<%= current_user.slug %>" style="float:left;margin-left:10px;text-decoration:none;">Fresh Kitchen</a>
+      <a href="/users/<%= current_user.slug %>" style="margin-left:10px;text-decoration:none;">Fresh Kitchen</a>
     </header>
-      <a href="users/<%current_user.username%>/foods/new" class="marginFix" id="button">Add Item</a>
+      <a href="/users/<%=current_user.slug%>" class="marginFix" id="button" style="text-align:center;">Home</a>
+      <a href="/users/<%=current_user.slug%>/foods/new" class="marginFix" id="button">Add Item</a>
       <a href="/logout" class="marginFix" id="buttonRight";>Sign Out</a>
-      <p class="marginFix" style="float:right;font-size:14px;background:white;margin-top:0;">Currently logged in as: <%= current_user.username %></p>
+      <p class="marginFix" style="float:right;font-size:14px;background:white;margin-top:0;padding:2px;">Currently logged in as: <%= current_user.username %></p>
 
 
       <div class="expired">
@@ -31,9 +32,9 @@
       <% if !current_user.expired_foods.empty? %>
           <% current_user.expired_foods.each do |food| %>
 
-            <p>*** Your <%= food.name.downcase %> expired today and <%= food.first_pronoun %>
+            <p>Your <%= food.name.downcase %> expired today and <%= food.first_pronoun %>
               removed from your inventory. Eat <%= food.second_pronoun %> quick or dump
-              <%= food.second_pronoun %> in the trash! ***</p>
+              <%= food.second_pronoun %> in the trash!</p>
 
               <% food.delete %>
 

@@ -24,14 +24,7 @@ header {
   margin:0;
   padding:5px 0 0 10px;
   opacity:0.7;
-  clear: both;
 }
-
-.marginFix {
-  position: relative;
-  bottom: 5px;
-}
-
 
 #buttonRight {
   border-bottom-right-radius:10px;
@@ -44,7 +37,6 @@ header {
   opacity:0.5
 }
 
-
  h1 {
    font-family: 'Song Myung', serif;
  }
@@ -52,11 +44,6 @@ header {
  label {
    font-family: 'Song Myung', serif;
  }
-
-hr {
-  border: 10px dotted black;
-  border-style: none none dotted;
-}
 
 a {
   text-decoration: underline;
@@ -137,6 +124,7 @@ input[type=submit] {
    font-size: 16px;
    height: 34px;
    width: 268px;
+   font-family: 'Song Myung', serif;
 }
 
 .showPageSelect {
@@ -150,6 +138,7 @@ input[type=submit] {
   font-weight: bold;
   height: 38px;
   width: 300px;
+  font-family: 'Song Myung', serif;
 }
 
 /* Create Food Page Styling */
@@ -160,6 +149,8 @@ input[type=submit] {
   text-align: center;
   margin: 0 auto;
   width: 415px;
+  background-color: rgba(229, 193, 130, 0.4);
+  padding: 5px;
 }
 
 .createFood label {
@@ -185,6 +176,28 @@ input[type=submit] {
   font-size: 24px;
   text-align: center;
   margin: 0 auto;
+  width: 415px;
+  height: 100%;
+  background-color: rgba(229, 193, 130, 0.4);
+  padding: 5px;
+}
+
+/* Show Food Styling */
+
+.showFood h1 {
+  margin-bottom: 0px;
+}
+
+.showFood form {
+  display: inline;
+}
+
+.showFood li {
+  font-style: italic;
+}
+
+.showFood hr {
+  border: 1px solid black;
   width: 415px;
 }
 
