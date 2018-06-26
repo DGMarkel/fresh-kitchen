@@ -11,8 +11,15 @@
           <li>Expiration Date: <%= food.expiration_date %></li>
         </ul>
 
-      <p><a href="/users/<%= current_user.slug %>/<%= params[:category] %>/<%= food.slug %>/edit">Edit <%= food.name %></a>
-      <a href="/users/<%= current_user.slug %>/<%= params[:category] %>/<%= food.slug %>/delete">Delete <%= food.name %></a></p>
+      <form action="/users/<%= current_user.slug %>/<%= params[:category] %>/<%= food.slug %>/edit" method="get">
+        <input type="submit" value="Edit <%= food.name %>">
+      </form>
+
+      <p></p>
+
+      <form action="/users/<%= current_user.slug %>/<%= params[:category] %>/<%= food.slug %>/delete" method="get">
+        <input type="submit" value="Delete <%= food.name %>">
+      </form>
 
       <% if food == @foods.last %>
         <hr style="1px dotted black">

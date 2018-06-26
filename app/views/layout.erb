@@ -24,6 +24,7 @@
         <a href="/users/<%= current_user.slug %>/foods/new" style="margin-left:5px;">Add Item</a>
         <a href="/logout" style="float:right;">Sign Out</a>
       </header>
+      <p style="float:right;font-size:10px;background:white;margin-top: 5px;">Currently logged in as: <%= current_user.username %></p>
 
 
       <div class="expired">
@@ -47,6 +48,13 @@
 
 
     <%= yield %>
+
+  <script type="text/javascript">
+    var urlmenu = document.getElementById( 'menu1' );
+    urlmenu.onchange = function() {
+    window.open( this.options[ this.selectedIndex ].value, "_self" );
+    };
+  </script>
 
   </body>
 </html>

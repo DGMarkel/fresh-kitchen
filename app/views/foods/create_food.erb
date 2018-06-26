@@ -1,6 +1,6 @@
 <div class="createFood">
 
-  <h1>Add items to your kitchen inventory:</h1>
+  <h1><strong>Add items to your kitchen inventory:</strong></h1>
 
   <form action="/users/<%= current_user.username %>/foods" method="post">
 
@@ -17,13 +17,17 @@
     <p></p>
 
     <label>Select a Category: </label>
+
+    <p>
       <% if !current_user.categories.empty? %>
-        <select name="category[id]">
+        <select class="createEditSelect" name="category[id]">
         <% current_user.categories.each do |category| %>
-          <option value="<%= category.id %>"><%= category.name %></option>  
+          <option value="<%= category.id %>"><%= category.name %></option>
         <% end %>
         </select>
       <% end %>
+    </p>
+
 
     <p></p>
 

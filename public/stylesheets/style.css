@@ -1,15 +1,24 @@
 body {
-  font-family: helvetica, sans-serif;
+  font-family: 'Song Myung', serif;
 }
 
 header {
   width:100%;
-  height:18px;
+  height:20px;
   background:white;
   clear:both;
  }
 
+ h1 {
+   font-family: 'Song Myung', serif;
+ }
+
+ label {
+   font-family: 'Song Myung', serif;
+ }
+
 #layoutHeader {
+  font-family: 'Song Myung', serif;
   font-size:100px;
   float:left;
   margin-bottom:0px;
@@ -40,18 +49,16 @@ a:hover {
 }
 
 .welcome h1 {
-  color: white;
   font-size: 60px;
   margin-bottom: 10px;
+  text-decoration: underline black;
 }
 
 .welcome p {
-  font-family: 'PT Sans Narrow', sans-serif;
   margin-top: 0px;
 }
 
 .welcome a {
-  color: white;
   text-decoration-color: black;
 }
 
@@ -81,38 +88,73 @@ a:hover {
 input[type=submit] {
     border-radius: 5px;
     border: 0;
-    width: 80px;
     height:25px;
     font-family: Tahoma;
     background: #f4f4f4;
   }
 
+/* Select Menu Styling */
+
+ .createEditSelect {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+   background-color: white;
+   border: 1px solid #ccc;
+   font-size: 16px;
+   height: 34px;
+   width: 268px;
+}
+
+.showPageSelect {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+  background-color: white;
+  border: 3px solid #ccc;
+  font-size: 25px;
+  font-weight: bold;
+  height: 38px;
+  width: 300px;
+}
+
 /* Create Food Page Styling */
 
 .createFood {
-
+  font-family: 'Song Myung', serif;
+  font-size: 24px;
+  text-align: center;
+  margin: 0 auto;
+  width: 415px;
 }
 
 .createFood label {
   font-weight: bold;
-  background: white;
 }
 
 /* User Home Styling */
 
 .userHome {
-
+  font-family: 'Song Myung', serif;
+  font-size: 24px;
+  text-align: center;
+  margin: 0 auto;
+  width: 415px;
 }
 
 /* Warnings */
 
 .expired {
   color: red;
+  background: white;
   text-align: center;
 }
 
 .warning {
   color: red;
+  background: white;
 }
 
 /* Background Image Styling */

@@ -17,10 +17,11 @@
   <label>Select a Category: </label>
 
     <% if !current_user.categories.empty? %>
-      <% current_user.categories.each do |category| %>
-      <input type="radio" name="update[category_id]" value="<%= category.id %>"
-      <%= 'checked' if category.id == @food.category_id %>><label><%= category.name %></label>
-      <% end %>
+    <select class="createEditSelect" name="category[id]">
+    <% current_user.categories.each do |category| %>
+      <option value="<%= category.id %>"><%= category.name %></option>
+    <% end %>
+  </select>
     <% end %>
 
   <p></p>
