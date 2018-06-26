@@ -29,6 +29,7 @@
 
     <% if !current_user.categories.empty? %>
     <select class="createEditSelect" name="category[id]">
+      <option value=""></option>
     <% current_user.categories.each do |category| %>
       <option value="<%= category.id %>"><%= category.name %></option>
     <% end %>
