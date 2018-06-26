@@ -28,7 +28,7 @@
   <label>Select a Category: </label>
 
     <% if !current_user.categories.empty? %>
-    <select name="new[existing_category]">
+    <select name="update[category]">
       <option value = "">
     <% current_user.categories.each do |category| %>
       <option value="<%=category.id%>"><%= category.name %></option>
