@@ -9,10 +9,12 @@ header {
   clear:both;
  }
 
-header h1 {
-  font-size: 100px;
+#layoutHeader {
+  font-size:100px;
   float:left;
   margin-bottom:0px;
+  margin-top:0px;
+  text-decoration: underline;
 }
 
 a {
@@ -87,16 +89,19 @@ input[type=submit] {
 
 /* Create Food Page Styling */
 
+.createFood {
+
+}
+
 .createFood label {
   font-weight: bold;
+  background: white;
 }
 
 /* User Home Styling */
 
 .userHome {
-  background: white;
-  margin-top: 10px;
-  padding: 0 10px 10px 10px;
+
 }
 
 /* Warnings */

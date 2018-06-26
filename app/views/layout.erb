@@ -6,8 +6,6 @@
 
 </style>
 
-
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -20,7 +18,7 @@
   <body>
 
     <% if logged_in? %>
-      <h1 style="font-size:100px;float:left;margin-bottom:0px;margin-top:0px;">Fresh Kitchen</h1>
+      <h1 id="layoutHeader">Fresh Kitchen</h1>
       <header>
         <a href="/users/<%= current_user.slug %>">Home</a>
         <a href="/users/<%= current_user.slug %>/foods/new" style="margin-left:5px;">Add Item</a>
