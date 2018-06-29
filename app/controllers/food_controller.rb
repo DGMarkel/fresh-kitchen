@@ -9,22 +9,41 @@ class FoodController < ApplicationController
   end
 
   post '/users/:user_slug/foods' do
+
     food = Food.create(params[:food])
+
     if params[:category][:id]
       food.update(category_id: params[:category][:id])
+
     elsif !params[:category][:name].empty?
-      category_new = Category.create(name: params[:category][:name], user_id: current_user.id)
-      food.update(category_id: category_new.id)
+
+      found_food = current_user.categories.find_by(name: params[:category][:name].downcase.capitalize)
+      found_plural = current_user.categories.find_by(name: "#{params[:category][:name]}s".downcase.capitalize)
+
+      if !found_food
+
+        if !found_plural
+          category_new = Category.create(name: params[:category][:name].downcase.capitalize, user_id: current_user.id)
+          food.update(category_id: category_new.id)
+        else
+          food.update(category_id: found_plural.id)
+        end
+
+      else
+        food.update(category_id: found_food.id)
+      end
+
     else
       redirect :"/users/#{current_user.slug}/foods/new"
     end
-    category = Category.find_by(id: food.category_id)
+
+    category = current_user.categories.find_by(id: food.category_id)
     redirect to :"/users/#{current_user.slug}/#{category.slug}"
   end
 
   get '/users/:user_slug/:category' do
     if logged_in?
-      category_id = Category.find_by_slug(params[:category]).id
+      category_id = current_user.categories.find_by_slug(params[:category]).id
       @foods = current_user.foods.where(category_id: category_id)
       erb :'/foods/show_food_by_category'
     else
@@ -45,7 +64,7 @@ class FoodController < ApplicationController
     @food = current_user.foods.find_by_slug(params[:food])
     @food.update(params[:update])
     if !params[:new][:category].empty?
-      category_new = Category.create(name: params[:new][:category], user_id: current_user.id)
+      category_new = Category.create(name: params[:new][:category].downcase.capitalize, user_id: current_user.id)
       @food.update(category_id: category_new.id)
     end
     redirect :"/users/#{current_user.slug}/#{params[:category]}"
