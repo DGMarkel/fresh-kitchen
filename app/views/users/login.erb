@@ -1,7 +1,6 @@
 <style>
 
   body {
-    max-width: 100%;
     overflow: hidden;
     background: rgb(235 239 249);
   }
@@ -11,6 +10,7 @@
 <div class="entryPoint">
 
 <h1>and we're back in 3, 2...</h1>
+<p id="tinyText">New to the site? <a href="/signup">Sign up</a> for a new account.</p>
 
 <form action="/login" method="post">
 
@@ -19,7 +19,6 @@
   <p class="warning"><% if flash.has?(:message) %><%= flash[:message] %><% end %></p>
 
   <p><input type="submit" value="submit"><p>
-  <p id="tinyText">New to the site? <a href="/signup">Sign up</a> for a new account.</p>
 
 </form>
 
