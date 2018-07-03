@@ -14,7 +14,8 @@
 
 <form action="/login" method="post">
 
-  <p><label>Username: </label><input class="inputForm" style="margin-right:20px;"type="text" name="username"> <label>Password: <input class="inputForm" type="password" name="password"></label></p>
+  <p><label>Username: </label><input class="inputForm" type="text" name="username"></p>
+  <p><label>Password: <input class="inputForm" type="password" name="password"></label></p>
 
   <p class="warning"><% if flash.has?(:message) %><%= flash[:message] %><% end %></p>
 
