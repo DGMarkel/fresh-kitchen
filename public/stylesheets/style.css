@@ -1,6 +1,7 @@
 html, body {
   margin:0;
   padding:0;
+  height:100%;
 }
 
 body {
@@ -157,6 +158,7 @@ input[type=submit] {
   text-align: center;
   margin: 0 auto;
   width: 415px;
+  height: 100%;
   background-color: rgba(229, 193, 130, 0.4);
   padding: 5px;
 }
