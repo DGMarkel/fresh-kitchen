@@ -9,7 +9,8 @@
 
 <div class="showFood">
 
-<h1><%= Category.find_by_slug(params[:category]).name %></h1>
+<h1><%= params[:category].gsub("-", " ") %></h1>
+
 <% if !@foods.empty? %>
 
   <% @foods.each do |food| %>
@@ -33,11 +34,8 @@
 
     </div>
 
-
-
-
-      <% if food == @foods.last %>
-        <hr>
+    <% if food == @foods.last %>
+      <hr>
       <% end %>
 
   <% end %>
