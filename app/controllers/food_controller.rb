@@ -34,10 +34,13 @@ class FoodController < ApplicationController
   end
 
   get '/users/:user_slug/:category' do
-    if logged_in?
+    if logged_in? && current_user.categories.find_by_slug(params[:category])
       category_id = current_user.categories.find_by_slug(params[:category]).id
       @foods = current_user.foods.where(category_id: category_id)
       erb :'/foods/show_food_by_category'
+    elsif
+      !current_user.categories.find_by_slug(params[:category])
+      redirect "/users/#{current_user.slug}"
     else
       redirect :/
     end
@@ -45,8 +48,11 @@ class FoodController < ApplicationController
 
   get '/users/:user_slug/:category/:food/edit' do
     if logged_in?
-      @food = current_user.foods.find_by_slug(params[:food])
-      erb :'/foods/edit_food'
+      if !current_user.foods.find_by_slug(params[:food])
+        redirect "/users/#{current_user.slug}/#{params[:category]}"
+      else @food = current_user.foods.find_by_slug(params[:food])
+        erb :'/foods/edit_food'
+      end
     else
       redirect :/
     end
@@ -80,7 +86,7 @@ class FoodController < ApplicationController
 
   helpers do
 
-    #finds user existing user categories >= %50 similar to new category entry
+    #finds existing user categories >= %50 similar to new category entry
     def find_similar_category_by_name(*args)
       current_user.categories.find {|category| category.name.similar(*args) >= 50}
     end
