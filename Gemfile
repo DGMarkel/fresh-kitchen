@@ -12,6 +12,7 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'rack-flash3'
+gem 'similar_text', '~> 0.0.4'
 
 group :test do
   gem 'rspec'

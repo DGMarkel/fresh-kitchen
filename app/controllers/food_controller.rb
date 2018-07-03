@@ -66,16 +66,12 @@ class FoodController < ApplicationController
   post '/users/:user_slug/:category/:food' do
     @food = current_user.foods.find_by_slug(params[:food])
     @food.update(params[:update])
-    find_singular_version_of_category = current_user.categories.find_by(name: params[:new][:category].chomp("s").downcase.capitalize)
-    find_pluralized_version_of_category = current_user.categories.find_by(name: "#{params[:new][:category]}s".downcase.capitalize)
 
-    if !params[:new][:category].empty? && !find_singular_version_of_category && !find_pluralized_version_of_category
+    if !params[:new][:category].empty? && !find_similar_category_by_name
       category_new = Category.create(name: params[:new][:category].downcase.capitalize, user_id: current_user.id)
       @food.update(category_id: category_new.id)
-    elsif !params[:new][:category].empty? && find_singular_version_of_category
-      @food.update(category_id: find_singular_version_of_category.id)
-    elsif !params[:new][:category].empty? && find_pluralized_version_of_category
-      @food.update(category_id: find_pluralized_version_of_category.id)
+    elsif !params[:new][:category].empty? && find_similar_category_by_name
+      @food.update(category_id: find_similar_category_by_name.id)
     end
     redirect :"/users/#{current_user.slug}/#{params[:category]}"
   end
@@ -88,6 +84,14 @@ class FoodController < ApplicationController
     else
       redirect :/
     end
+  end
+
+  helpers do
+
+    def find_similar_category_by_name
+      current_user.categories.find {|category| category.name.similar(params[:new][:category]) > 50}
+    end
+
   end
 
 end
