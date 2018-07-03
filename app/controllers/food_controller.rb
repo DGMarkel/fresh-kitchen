@@ -12,7 +12,7 @@ class FoodController < ApplicationController
 
     @food = Food.create(params[:food])
 
-    if !params[:food].any? {|k, v| v != ""}
+    if params[:food].any? {|k, v| v == ""}
       redirect :"/users/#{current_user.slug}/foods/new"
     else
       if params[:category][:id]
@@ -22,10 +22,10 @@ class FoodController < ApplicationController
       elsif !params[:category][:name].empty? && find_similar_category_by_name_for_create
         @food.update(category_id: find_similar_category_by_name_for_create.id)
       end
+      category = current_user.categories.find_by(id: @food.category_id)
+      redirect to :"/users/#{current_user.slug}/#{category.slug}"
     end
 
-    category = current_user.categories.find_by(id: @food.category_id)
-    redirect to :"/users/#{current_user.slug}/#{category.slug}"
   end
 
   get '/users/:user_slug/:category' do
@@ -74,12 +74,12 @@ class FoodController < ApplicationController
 
     # for post '/users/:user_slug/foods'
     def find_similar_category_by_name_for_create
-      current_user.categories.find {|category| category.name.similar(params[:category][:name]) > 50}
+      current_user.categories.find {|category| category.name.similar(params[:category][:name]) >= 50}
     end
 
     #for post '/users/:user_slug/:category/:food'
     def find_similar_category_by_name_for_edit
-      current_user.categories.find {|category| category.name.similar(params[:new][:category]) > 50}
+      current_user.categories.find {|category| category.name.similar(params[:new][:category]) >= 50}
     end
 
   end
