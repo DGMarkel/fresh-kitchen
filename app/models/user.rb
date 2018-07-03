@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :categories
   has_many :foods, through: :categories
-  
+
   def slug
     self.username.gsub(" ", "-")
   end
