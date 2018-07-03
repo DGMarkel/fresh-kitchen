@@ -17,23 +17,23 @@ class FoodController < ApplicationController
 
     elsif !params[:category][:name].empty? && params[:food].any? {|k, v| v != ""}
 
-      @found_category = current_user.categories.find_by(name: params[:category][:name].downcase.capitalize)
-      @found_singular_category = current_user.categories.find_by(name: params[:category][:name].chomp("s").downcase.capitalize)
-      @found_pluralized_category = current_user.categories.find_by(name: "#{params[:category][:name]}s".downcase.capitalize)
+      found_category = current_user.categories.find_by(name: params[:category][:name].downcase.capitalize)
+      found_singular_category = current_user.categories.find_by(name: params[:category][:name].chomp("s").downcase.capitalize)
+      found_pluralized_category = current_user.categories.find_by(name: "#{params[:category][:name]}s".downcase.capitalize)
 
-      if !@found_category
+      if !found_category
 
-        if !@found_pluralized_category && !@found_singular_category
+        if !found_pluralized_category && !found_singular_category
           category_new = Category.create(name: params[:category][:name].downcase.capitalize, user_id: current_user.id)
           food.update(category_id: category_new.id)
-        elsif @found_pluralized_category
-          food.update(category_id: @found_pluralized_category.id)
-        elsif @found_singular_category
-          food.update(category_id: @found_singular_category.id)
+        elsif found_pluralized_category
+          food.update(category_id: found_pluralized_category.id)
+        elsif found_singular_category
+          food.update(category_id: found_singular_category.id)
         end
 
       else
-        food.update(category_id: @found_category.id)
+        food.update(category_id: found_category.id)
       end
 
     else
@@ -66,9 +66,16 @@ class FoodController < ApplicationController
   post '/users/:user_slug/:category/:food' do
     @food = current_user.foods.find_by_slug(params[:food])
     @food.update(params[:update])
-    if !params[:new][:category].empty?
+    find_singular_version_of_category = current_user.categories.find_by(name: params[:new][:category].chomp("s").downcase.capitalize)
+    find_pluralized_version_of_category = current_user.categories.find_by(name: "#{params[:new][:category]}s".downcase.capitalize)
+
+    if !params[:new][:category].empty? && !find_singular_version_of_category && !find_pluralized_version_of_category
       category_new = Category.create(name: params[:new][:category].downcase.capitalize, user_id: current_user.id)
       @food.update(category_id: category_new.id)
+    elsif !params[:new][:category].empty? && find_singular_version_of_category
+      @food.update(category_id: find_singular_version_of_category.id)
+    elsif !params[:new][:category].empty? && find_pluralized_version_of_category
+      @food.update(category_id: find_pluralized_version_of_category.id)
     end
     redirect :"/users/#{current_user.slug}/#{params[:category]}"
   end
