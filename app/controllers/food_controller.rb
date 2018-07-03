@@ -23,6 +23,7 @@ class FoodController < ApplicationController
     #if a new category is entered and its name < 50% similar to existing category names
       elsif !params[:category][:name].empty? && !find_similar_category_by_name_for_create
         category_new = Category.create(name: params[:category][:name].downcase.capitalize, user_id: current_user.id)
+        @food.update(category_id: category_new.id)
     #if a new category is entered and its name > %50 similar to existing category names
       elsif !params[:category][:name].empty? && find_similar_category_by_name_for_create
         @food.update(category_id: find_similar_category_by_name_for_create.id)
