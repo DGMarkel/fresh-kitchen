@@ -6,7 +6,7 @@
   <option>Your Inventory</option>
 <% current_user.categories.each do |category| %>
   <% if !category.foods.empty? %>
-  <option value="/users/<%=current_user.slug%>/<%=category.slug %>"><%=category.name%>: <%= category.foods.count %> item(s)</option>
+  <option id="selectLink" value="/users/<%=current_user.slug%>/<%=category.slug %>"><%=category.name%>: <%= category.foods.count %> item(s)</option>
   <% end %>
 <%end%>
   </select>

@@ -150,6 +150,10 @@ input[type=submit] {
   font-family: 'Song Myung', serif;
 }
 
+.showPageSelect:hover {
+  color: red;
+}
+
 /* Create Food Page Styling */
 
 .createFood {
